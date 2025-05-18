@@ -12,7 +12,6 @@
                        node_namespace:=${None}
                        node_name:=orbbec_astra
                        topic_prefix:=~/">
-    <!-- node_namespace is used from node_name if not set -->
     <xacro:if value="${node_namespace == None}">
       <xacro:property name="node_namespace" value="${node_name}"/>
     </xacro:if>

@@ -23,21 +23,18 @@
               <x>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>2e-3</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </x>
               <y>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>2e-3</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </y>
               <z>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>2e-3</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </z>
@@ -46,21 +43,18 @@
               <x>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>2e-4</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </x>
               <y>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>2e-4</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </y>
               <z>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>2e-3</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </z>
@@ -69,21 +63,18 @@
               <x>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>1.7e-2</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </x>
               <y>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>1.7e-2</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </y>
               <z>
                 <noise type="gaussian">
                   <mean>0.0</mean>
-                  <!-- <stddev>1.7e-2</stddev> -->
                   <stddev>0.01</stddev>
                 </noise>
               </z>

@@ -2,29 +2,22 @@
 <robot name="wheel" xmlns:xacro="http://wiki.ros.org/xacro">
 
   <xacro:include filename="$(find golf_cart)/urdf/inertia.urdf.xacro"/>
-
-  <!-- CONSTANTS -->
   <xacro:property name="M_PI" value="3.1415926535897931"/>
   <xacro:property name="rubber_wheel_radius" value="0.11"/>
   <xacro:property name="rubber_wheel_height" value="0.15"/>
   <xacro:property name="rubber_wheel_mass" value="6.5"/>
-
-  <!-- WHEEL XACRO -->
   <xacro:macro name="rubber_wheel" params="prefix parent *origin reflect hq">
-
-    <!--TIRE -->
-    <joint name="${prefix}wheel_joint" type="continuous">
+    <joint name="${prefix}_wheel_joint" type="continuous">
       <xacro:insert_block name="origin" />
       <parent link="${parent}"/>
-      <child link="${prefix}wheel_link"/>
+      <child link="${prefix}_wheel_link"/>
       <axis xyz="0 1 0" rpy="0 0 0" />
       <limit effort="100" velocity="100"/>
       <dynamics damping="0.05" friction="0.1"/>
     </joint>
 
-    <link name="${prefix}wheel_link">
+    <link name="${prefix}_wheel_link">
       <visual>
-        <!-- HIGH RESOLUTION WHEELS -->
         <xacro:if value="${hq}">
           <origin xyz="0 0 0" rpy="0 0 0" />
           <geometry>
@@ -36,7 +29,6 @@
 						</xacro:unless>
           </geometry>
         </xacro:if>
-       <!-- LOW RESOLUTION WHEELS -->
         <xacro:unless value="${hq}">
           <origin xyz="0 0 0" rpy="${M_PI/2} 0 0" />
           <geometry>
@@ -57,7 +49,7 @@
       </inertial>
     </link>
 
-    <gazebo reference="${prefix}wheel_link">
+    <gazebo reference="${prefix}_wheel_link">
       <mu1>0.95</mu1>
       <mu2>0.90</mu2>
       <kp>2.75e6</kp>

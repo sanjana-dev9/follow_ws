@@ -13,7 +13,6 @@
                        node_namespace:=${None}
                        topic_prefix:=~/
                        gpu:=false">
-    <!-- node_namespace is used from node_name if not set -->
     <xacro:if value="${node_namespace == None}">
       <xacro:property name="node_namespace" value="${frame_prefix}"/>
     </xacro:if>
