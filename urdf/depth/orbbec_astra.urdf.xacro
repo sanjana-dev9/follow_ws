@@ -25,7 +25,7 @@
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
-          <mesh filename="package://golf_cart/meshes/depth/orbbec_astra.dae"/>
+          <mesh filename="file://$(find golf_cart)/meshes/depth/orbbec_astra.stl"/>
         </geometry>
       </visual>
       <collision>
