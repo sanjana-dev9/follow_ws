@@ -157,7 +157,7 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose>1.31455 -0.151084 0 0 -0 0</pose>
+      <pose>3 -0.151084 0 0 -0 0</pose>
     </model>
     <model name='oak_tree'>
       <static>1</static>
@@ -287,7 +287,6 @@
     </model>
     <model name='vrc_driving_terrain'>
       <static>1</static>
-      
       <link name='grass_plane'>
         <collision name='collision'>
           <geometry>
@@ -337,10 +336,10 @@
       <pose>5.0887 -4.91858 0 0 -0 0</pose>
     </model>
     <state world_name='default'>
-      <sim_time>2084 265000000</sim_time>
-      <real_time>2088 961098887</real_time>
-      <wall_time>1747548435 61837882</wall_time>
-      <iterations>2084265</iterations>
+      <sim_time>2116 68000000</sim_time>
+      <real_time>31 861738157</real_time>
+      <wall_time>1747620060 62550434</wall_time>
+      <iterations>31803</iterations>
       <model name='ground_plane'>
         <pose>0 0 0 0 -0 0</pose>
         <scale>1 1 1</scale>
@@ -362,13 +361,13 @@
         </link>
       </model>
       <model name='person_walking'>
-        <pose>1.31455 -0.151083 -1e-06 3e-06 1e-06 0.000825</pose>
+        <pose>3 -0.151084 -8e-06 0 -1e-06 0.000835</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose>1.31455 -0.151083 -1e-06 3e-06 1e-06 0.000825</pose>
+          <pose>3 -0.151084 -8e-06 0 -1e-06 0.000835</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>1.07304 -2.25612 -1.89963 2.35257 1.17515 -0.117596</acceleration>
-          <wrench>85.8433 -180.49 -151.97 0 -0 0</wrench>
+          <acceleration>0 0 -9.8 0 -0 1e-06</acceleration>
+          <wrench>0 0 -784 0 -0 0</wrench>
         </link>
       </model>
       <model name='pine_tree'>
@@ -390,12 +389,6 @@
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
-        <link name='link'>
-          <pose>5.0887 -4.91858 0 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
       </model>
       <light name='sun'>
         <pose>0 0 10 0 -0 0</pose>
@@ -403,7 +396,7 @@
     </state>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose>29.6131 -27.679 10.491 -0 0.479455 2.18419</pose>
+        <pose>2.89722 -9.92439 1.78067 -0 0.323455 1.61219</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>

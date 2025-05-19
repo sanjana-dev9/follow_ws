@@ -37,7 +37,7 @@
 
 	<xacro:property name="front_rgbd_camera_offset_x" value="0.35850"/>
 	<xacro:property name="front_rgbd_camera_offset_y" value="0.0"/>
-	<xacro:property name="front_rgbd_camera_offset_z" value="0.25062"/>
+	<xacro:property name="front_rgbd_camera_offset_z" value="0.8"/>
 
 	<xacro:property name="gps_offset_x" value="-0.365"/>
 	<xacro:property name="gps_offset_y" value="-0.167"/>

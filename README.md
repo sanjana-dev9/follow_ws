@@ -34,3 +34,12 @@ Tools:
 - test all joints with gazebo: ros2 run joint_state_publisher_gui joint_state_publisher_gui --ros-args -p robot_description:=/robot_description
 - ros2 launch golf_cart robot_control.launch.py world:=/home/sanjana/Desktop/golf_cart_ws/src/golf_cart/worlds/golf_field.world
 - To control the robot: ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args --remap cmd_vel:=/robotnik_base_control/cmd_vel_unstamped
+
+---
+
+# DETECT HUMAN
+
+- pip3 install torch torchvision ultralytics opencv-python seaborn
+- sudo apt install ros-humble-cv-bridge ros-humble-vision-msgs
+
+- Run: ros2 launch golf_cart detect_human.launch.py

@@ -37,7 +37,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'run_isaacsim = golf_cart.run_isaacsim:main'
+            'detect_human = golf_cart.detect_human:main'
         ],
     },
 )
