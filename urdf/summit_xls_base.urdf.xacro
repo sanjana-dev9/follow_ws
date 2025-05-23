@@ -2,58 +2,91 @@
 <robot name="summit_xl" xmlns:xacro="http://wiki.ros.org/xacro">
   <xacro:macro name="summit_xls_base" params="prefix publish_bf hq">
 
-  <xacro:property name="PI" value="3.1415926535897931"/>
-  <xacro:property name="wheel_radius" value="0.127" />
+    <xacro:property name="PI" value="3.1415926535897931"/>
+    <xacro:property name="wheel_radius" value="0.127" />
 
-	  <xacro:if value="${publish_bf}">
-		<link name="${prefix}base_footprint">
-		  <visual>
-			  <origin xyz="0 0 0" rpy="0 0 0" />
-			  <geometry>
-				 <box size="0.001 0.001 0.001" />
-			  </geometry>
-		  </visual>
-		</link>
+      <xacro:if value="${publish_bf}">
+      <link name="${prefix}base_footprint">
+        <visual>
+          <origin xyz="0 0 0" rpy="0 0 0" />
+          <geometry>
+          <box size="0.001 0.001 0.001" />
+          </geometry>
+        </visual>
+      </link>
 
-		<joint name="${prefix}base_footprint_joint" type="fixed">
-		  <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
-		  <parent link="${prefix}base_footprint"/>
-		  <child link="${prefix}base_link" />
-		</joint>
-	  </xacro:if>
-
-  <link name="${prefix}base_link">
-    <inertial>
-      <mass value="125.0" />
-      <origin xyz="0 0 0" />
-      <inertia  ixx="1.391" ixy="0.004"  ixz="0.0"  iyy="6.853"  iyz="0.0"  izz="6.125" />
-    </inertial>
-    <visual>
-      <origin xyz="0 0 0" rpy="0 0 0" />
-      <xacro:if value="${hq}">
-      <geometry>
-      <mesh filename="file://$(find golf_cart)/meshes/bases/summit_xls_chassis.stl"/>
-      </geometry>
+      <joint name="${prefix}base_footprint_joint" type="fixed">
+        <origin xyz="0 0 ${wheel_radius}" rpy="0 0 0" />
+        <parent link="${prefix}base_footprint"/>
+        <child link="${prefix}base_link" />
+      </joint>
       </xacro:if>
-      <xacro:unless value="${hq}">
-      <geometry>
-      <mesh filename="file://$(find golf_cart)/meshes/bases/summit_xls_chassis.dae"/>
-      </geometry>
-      </xacro:unless>
-      <material name="white">
-        <color rgba="1.0 1.0 1.0 1"/>
-      </material>
-    </visual>
-    <collision>
-       <origin xyz="0 0 0" rpy="0 0 0 " />
-       <geometry>
-         <mesh filename="file://$(find golf_cart)/meshes/bases/summit_xls_chassis.dae"/>
-       </geometry>
-    </collision>
-  </link>
 
-  <gazebo reference="${prefix}base_link">
-    <material>Gazebo/Black</material>
-  </gazebo>
+    <link name="${prefix}base_link">
+      <inertial>
+        <mass value="10.0" />
+        <origin xyz="0 0 0" />
+        <inertia  ixx="1.391" ixy="0.004"  ixz="0.0"  iyy="6.853"  iyz="0.0"  izz="6.125" />
+      </inertial>
+      <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <xacro:if value="${hq}">
+        <geometry>
+        <mesh filename="file://$(find golf_cart)/meshes/bases/summit_xls_chassis.stl"/>
+        </geometry>
+        </xacro:if>
+        <xacro:unless value="${hq}">
+        <geometry>
+        <mesh filename="file://$(find golf_cart)/meshes/bases/summit_xls_chassis.dae"/>
+        </geometry>
+        </xacro:unless>
+        <material name="white">
+          <color rgba="1.0 1.0 1.0 1"/>
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0 " />
+        <geometry>
+          <mesh filename="file://$(find golf_cart)/meshes/bases/summit_xls_chassis.dae"/>
+        </geometry>
+      </collision>
+    </link>
+
+    <gazebo reference="${prefix}base_link">
+      <material>Gazebo/Black</material>
+    </gazebo>
+  </xacro:macro>
+
+  <xacro:macro name="omni_steering" params="prefix publish_tf force_based:=false">
+		<xacro:if value="${force_based}">
+			<gazebo>
+				<plugin name="ros_force_based_move" filename="librobotnik_force_based_move.so">
+					<commandTopic>robotnik_base_control/reference_unstamped</commandTopic>
+					<odometryTopic>odom</odometryTopic>
+					<odometryFrame>odom</odometryFrame>
+					<yaw_velocity_p_gain>10000.0</yaw_velocity_p_gain>
+					<x_velocity_p_gain>10000.0</x_velocity_p_gain>
+					<y_velocity_p_gain>10000.0</y_velocity_p_gain>
+					<robotBaseFrame>summit_xl_base_footprint</robotBaseFrame>
+					<commandWatchdog>1</commandWatchdog>
+					<odometryRate>50.0</odometryRate>
+					<publishOdometryTf>${publish_tf}</publishOdometryTf>
+				</plugin>
+			</gazebo>
+		</xacro:if>
+
+		<xacro:unless value="${force_based}">
+			<gazebo>
+				<plugin name="omni_steering" filename="libgazebo_ros_planar_move.so">
+				<command_topic>robotnik_base_control/reference_unstamped</command_topic>
+				<odometry_topic>odom</odometry_topic>
+				<odometry_frame>odom</odometry_frame>
+				<odometry_rate>50.0</odometry_rate>
+				<robot_base_frame>summit_xl_base_footprint</robot_base_frame>
+				<publish_tf>${publish_tf}</publish_tf>
+				<enableYAxis>true</enableYAxis>
+				</plugin>
+			</gazebo>
+		</xacro:unless>
   </xacro:macro>
 </robot>

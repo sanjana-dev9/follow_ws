@@ -12,16 +12,19 @@
   <depend>launch</depend>
   <depend>launch_ros</depend>
 
-  <test_depend>ament_copyright</test_depend>
-  <test_depend>ament_flake8</test_depend>
-  <test_depend>ament_pep257</test_depend>
-  <test_depend>python3-pytest</test_depend>
+  <depend>sensor_msgs</depend>
+  <depend>std_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>cv_bridge</depend>
+  <depend>nav2_simple_commander</depend>
+  <depend>nav2_msgs</depend>
+  <depend>tf2_ros</depend>
+  <depend>tf2_geometry_msgs</depend>
+  <depend>nav2_bringup</depend>
+  <depend>slam_toolbox</depend>
 
-  <depend>twist_mux</depend>
-  <depend>ros2_control</depend>
-  <depend>controller_manager</depend>
-  <depend>joint_state_broadcaster</depend>
-  <depend>vision_opencv</depend>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
 
   <export>
     <build_type>ament_python</build_type>

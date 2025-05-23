@@ -46,28 +46,28 @@
 	<xacro:property name="hq" value="false" />
 
 	<xacro:arg name="prefix" default="summit_xl_"/>
-	<xacro:arg name="ros_planar_move_plugin" default="false"/>
+	<xacro:arg name="ros_planar_move_plugin" default="true"/>
 	<xacro:arg name="gpu" default="false"/>
 
 
     <xacro:macro name="summit_xl" params="prefix publish_bf hq">
 		<xacro:summit_xls_base prefix="$(arg prefix)" publish_bf="true" hq="${hq}" />
 
-		<xacro:rubber_wheel prefix="$(arg prefix)front_right" parent="$(arg prefix)base_link" reflect="false" hq="${hq}">
+		<xacro:omni_wheel prefix="$(arg prefix)front_right" parent="$(arg prefix)base_link" reflect="false" hq="${hq}">
 			<origin xyz="${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
-		</xacro:rubber_wheel>
+		</xacro:omni_wheel>
 
-		<xacro:rubber_wheel prefix="$(arg prefix)front_left" parent="$(arg prefix)base_link" reflect="true" hq="${hq}">
+		<xacro:omni_wheel prefix="$(arg prefix)front_left" parent="$(arg prefix)base_link" reflect="true" hq="${hq}">
 			<origin xyz="${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
-		</xacro:rubber_wheel>
+		</xacro:omni_wheel>
 
-		<xacro:rubber_wheel prefix="$(arg prefix)back_left" parent="$(arg prefix)base_link" reflect="true" hq="${hq}">
+		<xacro:omni_wheel prefix="$(arg prefix)back_left" parent="$(arg prefix)base_link" reflect="true" hq="${hq}">
 			<origin xyz="-${wheel_offset_x} ${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
-		</xacro:rubber_wheel>
+		</xacro:omni_wheel>
 
-		<xacro:rubber_wheel prefix="$(arg prefix)back_right" parent="$(arg prefix)base_link" reflect="false" hq="${hq}">
+		<xacro:omni_wheel prefix="$(arg prefix)back_right" parent="$(arg prefix)base_link" reflect="false" hq="${hq}">
 			<origin xyz="-${wheel_offset_x} -${wheel_offset_y} ${wheel_offset_z}" rpy="0 0 0"/>
-		</xacro:rubber_wheel>
+		</xacro:omni_wheel>
 		<xacro:sensor_myahrs frame_prefix="$(arg prefix)imu" parent="$(arg prefix)base_link">
 			<origin xyz="${imu_offset_x} ${imu_offset_y} ${imu_offset_z}" rpy="0 0 0"/>
 		</xacro:sensor_myahrs>
@@ -87,7 +87,7 @@
    <xacro:ros2_control prefix="$(arg prefix)"/>
 
    <xacro:if value="$(arg ros_planar_move_plugin)">
-	   <xacro:omni_steering prefix="$(arg prefix)" publish_tf="true"/>
+	   <xacro:omni_steering prefix="$(arg prefix)" publish_tf="false"/>
    </xacro:if>
 
    <xacro:summit_xl prefix="$(arg prefix)" publish_bf="true" hq="${hq}"/>

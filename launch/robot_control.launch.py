@@ -46,6 +46,30 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster"],
     )
 
+    laser_scan_merger = Node(
+            package='ros2_laser_scan_merger',
+            executable='ros2_laser_scan_merger',
+            parameters=[os.path.join(
+                get_package_share_directory('ros2_laser_scan_merger'),
+                'config',
+                'params.yaml'
+            )],
+            output='screen',
+            respawn=True,
+            respawn_delay=2,
+        )
+
+    pointcloud_to_laserscan = Node(
+            name='pointcloud_to_laserscan',
+            package='pointcloud_to_laserscan',
+            executable='pointcloud_to_laserscan_node',
+            parameters=[os.path.join(
+                get_package_share_directory('ros2_laser_scan_merger'),
+                'config',
+                'params.yaml'
+            )]
+        )
+
     # Launch them all!
     return LaunchDescription([
         rsp,
@@ -54,5 +78,7 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
         diff_drive_spawner,
-        joint_broad_spawner
+        joint_broad_spawner,
+        laser_scan_merger,
+        pointcloud_to_laserscan
     ])

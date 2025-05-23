@@ -36,7 +36,7 @@ class HumanDetectorWithPointCloud(Node):
         # Load YOLO model
         try:
             self.model = YOLO(self.model_path)
-            self.get_logger().info(f"YOLO model {self.model_path} loaded successfully")
+            self.get_logger().debug(f"YOLO model {self.model_path} loaded successfully")
         except Exception as e:
             self.get_logger().error(f"Failed to load YOLO model: {e}")
             return
@@ -60,7 +60,7 @@ class HumanDetectorWithPointCloud(Node):
         self.detection_pub = self.create_publisher(String, '/human_detections_status', 10)
         self.human_distance_pub = self.create_publisher(Float64, '/human_distance', 10)
         
-        self.get_logger().info(f"set up complete")
+        self.get_logger().debug(f"set up complete")
     
     def pointcloud_callback(self, msg):
         self.latest_pointcloud = msg
@@ -214,9 +214,9 @@ class HumanDetectorWithPointCloud(Node):
         if detection_info:
             distances = [d['distance'] for d in detection_info if d['distance'] is not None]
             if distances:
-                self.get_logger().info(f"Detected {len(detection_info)} person(s) at distances: {[f'{d:.2f}m' for d in distances]}")
+                self.get_logger().debug(f"Detected {len(detection_info)} person(s) at distances: {[f'{d:.2f}m' for d in distances]}")
             else:
-                self.get_logger().info(f"Detected {len(detection_info)} person(s) - no depth data")
+                self.get_logger().debug(f"Detected {len(detection_info)} person(s) - no depth data")
 
 def main(args=None):
     rclpy.init(args=args)

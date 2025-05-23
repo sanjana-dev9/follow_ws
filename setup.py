@@ -37,7 +37,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'detect_human = golf_cart.detect_human:main'
+            'detect_human = golf_cart.detect_human:main',
+            'follow_human = golf_cart.follow_human:main'
         ],
     },
 )
